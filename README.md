@@ -8,7 +8,6 @@ A NestJS-based REST API for managing event contracts, suppliers, and client comm
 - **Event Management**: Create and manage events with multiple suppliers
 - **Contract Tracking**: Real-time contract status updates
 - **Email Notifications**: Automated client invitations
-- **Real-time Updates**: WebSocket support for live status changes
 - **File Uploads**: Support for contract documents
 - **Role-based Access**: Different permissions for each user type
 
