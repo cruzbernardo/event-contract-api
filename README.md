@@ -14,7 +14,7 @@ A NestJS-based REST API for managing event contracts, suppliers, and client comm
 ## Quick Start
 
 ### Prerequisites
-- Node.js 18+
+- Node.js 20+
 - PostgreSQL 12+
 - npm or yarn
 
