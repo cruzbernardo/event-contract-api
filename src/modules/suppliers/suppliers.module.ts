@@ -1,7 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Contract, Supplier } from 'src/database/entities';
-import { ContractsModule } from '../contracts/contracts.module';
+import { Supplier } from 'src/database/entities';
+import { SuppliersService } from './domain/suppliers.service';
+import { SuppliersController } from './http/suppliers.controller';
 
-@Module({ imports: [TypeOrmModule.forFeature([Supplier,Contract])] })
+@Module({
+  imports: [TypeOrmModule.forFeature([Supplier])],
+  controllers: [SuppliersController],
+  providers: [SuppliersService],
+  exports: [SuppliersService],
+})
 export class SuppliersModule {}

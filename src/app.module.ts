@@ -7,6 +7,7 @@ import { HealthModule } from './modules/health';
 import { AuthenticationModule } from './modules/authentication';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { JwtGuard } from './shared/guards/jwt.guard';
+import { RoleGuard } from './shared/guards/role.guard';
 import { JwtStrategy } from './modules/authentication/constants/jwt.strategy';
 import { ClsModule } from 'nestjs-cls';
 import { TraceInterceptor } from './shared/interceptors/trace.interceptor';
@@ -44,6 +45,10 @@ import { SuppliersModule } from './modules/suppliers/suppliers.module';
     {
       provide: APP_GUARD,
       useClass: JwtGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard,
     },
     JwtStrategy,
     {

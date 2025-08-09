@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from 'src/database/entities';
+import { User, UserRole } from 'src/database/entities';
 import {
   ResponseGetUserWithoutPassword,
   RequestRegisterUser,
@@ -42,9 +42,13 @@ export class UsersService {
       throw new ConflictException('Email already in use');
     }
 
-    const user = await this.userRepository.save(
-      this.userRepository.create(data),
-    );
+    const newUser = (this.userRepository.create({
+      ...(data as any),
+      lastName: (data as any).lastName ?? (data as any).firstName ?? 'User',
+      role: ((data as any).role as any) ?? (UserRole.CLIENT as any),
+    }) as unknown) as User;
+
+    const user = (await this.userRepository.save(newUser)) as User;
 
     this.logger.info(
       `User registered successfully: id=${user.id} email=${user.email}`,
