@@ -6,10 +6,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 
 import { Contract } from './contract.entity';
 import { EventSupplier } from './eventSuppliers.entity';
+import { User } from './user.entity';
 
 export enum SupplierCategory {
   VENUE = 'venue',
@@ -53,6 +55,9 @@ export class Supplier {
 
   @OneToMany(() => Contract, (contract) => contract.supplier)
   contracts: Contract[];
+
+  @ManyToOne(() => User)
+  ownerUser: User;
 
   @CreateDateColumn()
   createdAt: Date;

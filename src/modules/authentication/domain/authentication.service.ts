@@ -104,6 +104,8 @@ export class AuthenticationService {
     const payload: PartialUser = {
       id: user.id,
       name: user.firstName,
+      // estender payload com role para RoleGuard
+      ...(user as any).role ? { role: (user as any).role } : {},
     };
 
     return {
